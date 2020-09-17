@@ -102,22 +102,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Lower
  * ,-----------------------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |   [  |   ]  | Bksp |
+ * |      | AC_1 | AC_2 | AC_3 |      |      |      |      |      |   [  |   ]  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |   /  |  =   |
+ * | MS_3 | MS_2 | MS_U | MS_1 | MW_U |      |      |      |      |      |   /  |  =   |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Del  |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |   _  |   +  |   {  |   }  |  \   |
+ * | MS_4 | MS_L | MS_D | MS_R | MW_D |      |      |   _  |   +  |   {  |   }  |  \   |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO ~ |ISO | |      |      |      |
+ * |      |      |      |      |      |      |      |ISO ~ |ISO | |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |             |      | Next | Vol- | Vol+ | Play |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_preonic_grid( \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, KC_BSPC, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_SLSH, KC_EQL,  \
-  KC_DEL,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_BSLS, \
-  _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,S(KC_NUHS),S(KC_NUBS),KC_HOME, KC_END, _______, \
+  _______, KC_ACL0, KC_ACL1, KC_ACL2, _______, _______, _______, _______, _______, KC_LBRC, KC_RBRC, KC_BSPC, \
+  KC_BTN3, KC_BTN2, KC_MS_U, KC_BTN1, KC_WH_U, _______, _______, _______, _______, _______, KC_SLSH, KC_EQL,  \
+  KC_BTN4, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_D, _______, _______, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_BSLS, \
+  _______, _______, _______, _______, _______, _______, _______,S(KC_NUHS),S(KC_NUBS),KC_HOME, KC_END, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY \
 ),
 
@@ -230,7 +230,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _RAISE:
-        rgblight_setrgb (0x00,  0xFF, 0x00);
+        rgblight_setrgb (0x00,  0x00, 0xFF);
         break;
     case _LOWER:
         rgblight_setrgb (0xFF,  0x00, 0x00);
@@ -239,7 +239,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         rgblight_setrgb (0xFF,  0x00, 0xFF);
         break;
     default: //  for any other layers, or the default layer
-        rgblight_setrgb (0x00,  0xFF, 0xFF);
+        rgblight_setrgb (0x00,  0xFF, 0x00);
         break;
     }
   return state;
